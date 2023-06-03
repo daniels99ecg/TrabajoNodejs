@@ -13,6 +13,7 @@ app.use(express.json());
 app.get('/', (req, res)=>{
     res.send('Hello word')
 })
+
 responApi(app);
 
 // app.use('/movies', require('./Router/movies.js'));
