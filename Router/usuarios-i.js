@@ -95,7 +95,7 @@ Router.patch('/:id', async (req, res)=>{
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const result = await client.db('sample_airbnb').collection('PubligrafitNode').updateOne({_id: new ObjectId(id)},{$set:{title:body, year:body.year}});
+        const result = await client.db('sample_airbnb').collection('PubligrafitNode').updateOne({_id: new ObjectId(id)},{$set:{body}});
         if(result){
             res.status(201).json({
                 message: 'Se actualizo la pelicula',
@@ -112,16 +112,16 @@ Router.patch('/:id', async (req, res)=>{
     }
 })
 //UPDATE MANY
-Router.put('/:id', async (req, res)=>{
-    const id=req.params.id;
+Router.put('/', async (req, res)=>{
+  
     const body = req.body;
 
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const result = await client.db('sample_airbnb').collection('PubligrafitNode').updateMany({title:id},{$set:{title:body}});
+        const result = await client.db('sample_airbnb').collection('PubligrafitNode').updateMany({},{$set:{activo:body}});
         if(result){
-            res.status(201).json({
+            res.status(200).json({
                 message: 'Se actualizo la pelicula',
                 result,
                 //data: body
@@ -168,7 +168,7 @@ Router.delete('/', async (req, res)=>{
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const result = await client.db('sample_airbnb').collection('PubligrafitNode').deleteMany(body);
+        const result = await client.db('sample_airbnb').collection('PubligrafitNode').adeleteMny(body);
         if(result){
             res.status(200).json({
                 message: 'Se borro la pelicula',

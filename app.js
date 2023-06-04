@@ -14,7 +14,7 @@ app.get('/', (req, res)=>{
     res.send('Hello word')
 })
 
-responApi(app);
+responApi(app); // llamado desde el index.js donde estan todos los require de cada modulo
 
 // app.use('/movies', require('./Router/movies.js'));
 

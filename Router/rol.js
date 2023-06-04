@@ -95,7 +95,7 @@ Router.patch('/:id', async (req, res)=>{
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const result = await client.db('sample_airbnb').collection('rol').updateOne({_id: new ObjectId(id)},{$set:{title:body, year:body.year}});
+        const result = await client.db('sample_airbnb').collection('rol').updateOne({_id: new ObjectId(id)},{$set:{body}});
         if(result){
             res.status(201).json({
                 message: 'Se actualizo la pelicula',
@@ -112,14 +112,14 @@ Router.patch('/:id', async (req, res)=>{
     }
 })
 //UPDATE MANY
-Router.put('/:id', async (req, res)=>{
-    const id=req.params.id;
+Router.put('/', async (req, res)=>{
+
     const body = req.body;
 
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const result = await client.db('sample_airbnb').collection('rol').updateMany({title:id},{$set:{title:body}});
+        const result = await client.db('sample_airbnb').collection('rol').updateMany({},{$set:{body}});
         if(result){
             res.status(201).json({
                 message: 'Se actualizo la pelicula',
