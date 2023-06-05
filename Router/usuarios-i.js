@@ -168,7 +168,7 @@ Router.delete('/', async (req, res)=>{
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const result = await client.db('sample_airbnb').collection('PubligrafitNode').adeleteMny(body);
+        const result = await client.db('sample_airbnb').collection('PubligrafitNode').deleteMany(body);
         if(result){
             res.status(200).json({
                 message: 'Se borro la pelicula',
