@@ -89,8 +89,8 @@ Router.post('/', async(req, res)=>{
 
 
 
-Router.patch('/:id', async (req, res)=>{
-    const id = req.params.id;
+Router.patch('/', async (req, res)=>{
+
     const body = req.body;
     const client = new MongoClient(uri);
     try {
