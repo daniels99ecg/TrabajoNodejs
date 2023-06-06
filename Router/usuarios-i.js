@@ -2,37 +2,43 @@ const express=require('express');
 const {MongoClient, ObjectId} = require('mongodb')
 const Router=express.Router();
 const bodyParser=require('body-parser');
+require('dotenv').config();
 
 
-const uri = 'mongodb+srv://decruz82:admin@cluster0.bmv0nsj.mongodb.net/?retryWrites=true&w=majority';
+
+
+
+
 
 Router.use(bodyParser.json());
 Router.use(bodyParser.urlencoded({extended: true}));
 Router.use(express.json());
+const uri=process.env.URI;
 
 
+Router.use(require('./UsuarioFind.js'))
 
-Router.get('/', async(req, res)=>{
-    const client=new MongoClient(uri)
+// Router.get('/', async(req, res)=>{
+//     const client=new MongoClient(uri)
    
-    try {
+//     try {
 
-        await client.connect();
-        const result=await client.db('sample_airbnb').collection('PubligrafitNode').find({}).toArray();
+//         await client.connect();
+//         const result=await client.db('sample_airbnb').collection('PubligrafitNode').find({}).toArray();
 
 
-       if(result){
-        res.send(result)
-       }else{
-        res.send('No se encotro nada')
-       }
+//        if(result){
+//         res.send(result)
+//        }else{
+//         res.send('No se encotro nada')
+//        }
 
-    } catch (e) {
-        console.error(e)
-    }finally{
-        await client.close();
-    }
-})
+//     } catch (e) {
+//         console.error(e)
+//     }finally{
+//         await client.close();
+//     }
+// })
 
 
 Router.get('/:id', async(req, res)=>{

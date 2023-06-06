@@ -4,7 +4,12 @@ const Router=express.Router();
 const bodyParser=require('body-parser');
 
 
-const uri = 'mongodb+srv://decruz82:admin@cluster0.bmv0nsj.mongodb.net/?retryWrites=true&w=majority';
+require('dotenv').config();
+
+
+
+
+process.env.URI;
 
 Router.use(bodyParser.json());
 Router.use(bodyParser.urlencoded({extended: true}));

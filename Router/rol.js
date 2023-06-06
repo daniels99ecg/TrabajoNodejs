@@ -2,9 +2,12 @@ const express=require('express');
 const {MongoClient, ObjectId} = require('mongodb')
 const Router=express.Router();
 const bodyParser=require('body-parser');
+require('dotenv').config();
 
 
-const uri = 'mongodb+srv://decruz82:admin@cluster0.bmv0nsj.mongodb.net/?retryWrites=true&w=majority';
+
+
+const uri=process.env.URI;
 
 Router.use(bodyParser.json());
 Router.use(bodyParser.urlencoded({extended: true}));
