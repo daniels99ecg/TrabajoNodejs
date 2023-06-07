@@ -4,10 +4,7 @@ const Router=express.Router();
 const bodyParser=require('body-parser');
 require('dotenv').config();
 
-
-
-
-
+const Usuarios = require('../Service/UsuariosFind');
 
 
 Router.use(bodyParser.json());
@@ -16,29 +13,17 @@ Router.use(express.json());
 const uri=process.env.URI;
 
 
-Router.use(require('./UsuarioFind.js'))
+const Usuarios1 = new Usuarios();
 
-// Router.get('/', async(req, res)=>{
-//     const client=new MongoClient(uri)
-   
-//     try {
+Router.get('/', async(req, res)=>{
 
-//         await client.connect();
-//         const result=await client.db('sample_airbnb').collection('PubligrafitNode').find({}).toArray();
-
-
-//        if(result){
-//         res.send(result)
-//        }else{
-//         res.send('No se encotro nada')
-//        }
-
-//     } catch (e) {
-//         console.error(e)
-//     }finally{
-//         await client.close();
-//     }
-// })
+   const result=await Usuarios1.find();
+    if(result){
+        res.send(result)
+       }else{
+        res.send('No se encotro nada')
+       }
+})
 
 
 Router.get('/:id', async(req, res)=>{
