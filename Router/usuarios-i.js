@@ -5,7 +5,7 @@ const bodyParser=require('body-parser');
 require('dotenv').config();
 
 const Usuarios = require('../Service/UsuariosFind');
-
+const UsuariosInsertar=require('../Service/UsuarioInsert')
 
 Router.use(bodyParser.json());
 Router.use(bodyParser.urlencoded({extended: true}));
@@ -14,6 +14,7 @@ const uri=process.env.URI;
 
 
 const Usuarios1 = new Usuarios();
+const insertar=new UsuariosInsertar();
 
 Router.get('/', async(req, res)=>{
 
@@ -29,7 +30,7 @@ Router.get('/', async(req, res)=>{
 Router.get('/:id', async(req, res)=>{
     const id=req.params.id;
 
-    const result=await Usuarios1.findOne({_id:new ObjectId(id)});
+    const result=await Usuarios1.findOne({id});
 
     if(result){
         res.status(200).send(result)
@@ -42,29 +43,17 @@ Router.get('/:id', async(req, res)=>{
 
 Router.post('/', async(req, res)=>{
     const body=req.body;
-    const client=new MongoClient(uri)
+    const result= await insertar.insertMany(body);
    
-    try {
-
-        await client.connect();
-        const result=await client.db('sample_airbnb').collection('PubligrafitNode').insertMany([body]);
-
-
-       if(result){
-         res.status(200).json({
-            message: 'Se creo la pelicula',
-            result,
-        
-         });
-       }else{
-        res.status(404).send('No se agrego la pelicula')
-       }
-
-    } catch (e) {
-        console.error(e)
-    }finally{
-        await client.close();
-    }
+    if(result){
+        res.status(200).json({
+           message: 'Se creo la pelicula',
+           result,
+       
+        });
+      }else{
+       res.status(404).send('No se agrego la pelicula')
+      }
 });
 
 

@@ -23,14 +23,14 @@ async find(){
     }
 }
 
-async findOne(){
+async findOne(id){
     
     const client=new MongoClient(uri)
    
     try {
 
         await client.connect();
-        const result=await client.db('sample_airbnb').collection('PubligrafitNode').findOne({ });
+        const result=await client.db('sample_airbnb').collection('PubligrafitNode').findOne({_id:new ObjectId(id)});
         return result;
     } catch (e) {
         console.error(e)
