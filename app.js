@@ -11,7 +11,10 @@ app.use(express.json());
 
 
 app.get('/', (req, res)=>{
-    res.send('<h1>Bienvenido a la API de publigrafit</h1>')
+    // res.send('<h1>Bienvenido a la API de publigrafit</h1>')
+    res.sendFile('View/index.html',{
+        root:__dirname
+    })
 })
 
 responApi(app); // llamado desde el index.js donde estan todos los require de cada modulo
