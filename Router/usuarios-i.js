@@ -95,7 +95,7 @@ Router.put('/', async (req, res)=>{
 
 
 // DELETE
-// deleteOne() Actualizamos solo un documento
+
 Router.delete('/:id', async (req, res)=>{
     const id = req.params.id;
     const result= await eliminar.deleteOne(id);
