@@ -28,25 +28,14 @@ Router.get('/', async(req, res)=>{
 
 Router.get('/:id', async(req, res)=>{
     const id=req.params.id;
-    const client=new MongoClient(uri)
-   
-    try {
 
-        await client.connect();
-        const result=await client.db('sample_airbnb').collection('PubligrafitNode').findOne({_id:new ObjectId(id) });
+    const result=await Usuarios1.findOne({_id:new ObjectId(id)});
 
-
-       if(result){
-         res.status(200).send(result)
-       }else{
-        res.status(404).send('No se encotro nada')
-       }
-
-    } catch (e) {
-        console.error(e)
-    }finally{
-        await client.close();
-    }
+    if(result){
+        res.status(200).send(result)
+      }else{
+       res.status(404).send('No se encotro nada')
+      }
 });
 
 
