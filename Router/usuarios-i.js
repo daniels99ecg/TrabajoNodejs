@@ -4,10 +4,10 @@ const Router=express.Router();
 const bodyParser=require('body-parser');
 require('dotenv').config();
 
-const Usuarios = require('../Service/UsuariosFind');
-const UsuariosInsertar=require('../Service/UsuarioInsert')
-const UsuariosActualizar=require('../Service/UsuarioUpdate')
-const UsuariosDelete=require('../Service/UsuarioDelete')
+const Usuarios = require('../Service/Usuario/UsuariosFind');
+const UsuariosInsertar=require('../Service/Usuario/UsuarioInsert')
+const UsuariosActualizar=require('../Service/Usuario/UsuarioUpdate')
+const UsuariosDelete=require('../Service/Usuario/UsuarioDelete')
 
 Router.use(bodyParser.json());
 Router.use(bodyParser.urlencoded({extended: true}));
@@ -94,7 +94,7 @@ Router.put('/', async (req, res)=>{
 })
 
 
-// DELETE
+// DELETE ONE
 
 Router.delete('/:id', async (req, res)=>{
     const id = req.params.id;
@@ -112,26 +112,18 @@ Router.delete('/:id', async (req, res)=>{
 })
 //DELETE MANY 
 Router.delete('/', async (req, res)=>{
-
-   const body=req.body;
-    const client = new MongoClient(uri);
-    try {
-        await client.connect();
-        const result = await client.db('sample_airbnb').collection('PubligrafitNode').deleteMany(body);
-        if(result){
-            res.status(200).json({
-                message: 'Se borro la pelicula',
-                result,
-                //data: body
-            });
-        }else{
-            res.status(404).send("No se actualizo la pelicula");
-        }
-    }catch(e){
-        console.log(e);
-    }finally{
-        await client.close();
+    const body=req.body;
+    const result = await eliminar.deleteMany(body);
+    if(result){
+        res.status(200).json({
+            message: 'Se borro la pelicula',
+            result,
+            //data: body
+        });
+    }else{
+        res.status(404).send("No se actualizo la pelicula");
     }
+   
 })
 
 

@@ -13,7 +13,7 @@ async deleteOne(id){
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const result = await client.db('sample_airbnb').collection('PubligrafitNode').deleteOne({_id: new ObjectId(id)});
+        const result = await client.db('sample_airbnb').collection('rol').deleteOne({_id: new ObjectId(id)});
         return result;
     }catch(e){
         console.log(e);
@@ -23,6 +23,21 @@ async deleteOne(id){
 
 
 }
+
+async deleteMany(body){
+    
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+        const result = await client.db('sample_airbnb').collection('rol').deleteMany(body);
+        return result
+    }catch(e){
+        console.log(e);
+    }finally{
+        await client.close();
+    }
+}
+
 }
 
 module.exports=UsuariosDelete;
