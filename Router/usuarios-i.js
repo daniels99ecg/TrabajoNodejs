@@ -22,7 +22,7 @@ const eliminar=new UsuariosDelete();
 
 Router.get('/', async(req, res)=>{
 
-   const result=await Usuarios1.find();
+   const result=await Usuarios.find();
     if(result){
         res.send(result)
        }else{
@@ -34,7 +34,7 @@ Router.get('/', async(req, res)=>{
 Router.get('/:id', async(req, res)=>{
     const id=req.params.id;
 
-    const result=await Usuarios1.findOne({id});
+    const result=await Usuarios.findOne({id});
 
     if(result){
         res.status(200).send(result)
