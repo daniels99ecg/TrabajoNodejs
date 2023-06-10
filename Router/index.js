@@ -11,6 +11,8 @@ const routerlistingSales = require('./routesListingSales');
 const routerCollection2 = require('./routesCollection2');
 const routerCollection3 = require('./routesCollection3');
 
+const routerProductos=require('./productos.js');
+
 function responApi(app){
     app.use('/movies', restMovies);
     app.use('/comment', restComment);
@@ -24,6 +26,8 @@ function responApi(app){
     app.use('/ventas', routerlistingSales);//La app que creamos con appexpress va a asociar "movies" con el controlador routesMovies
     app.use('/detalles', routerCollection2);
     app.use('/estado', routerCollection3);
+
+    app.use('/productos', routerProductos);
 }
 
 module.exports=responApi;
