@@ -24,7 +24,7 @@ Router.get('/', async(req, res)=>{
 
    const result=await Usuarios1.find();
     if(result){
-        res.render('../View/template', {title:result})
+        res.render('../View/Usuarios', {title:result})
        }else{
         res.send('No se encotro nada')
        }
