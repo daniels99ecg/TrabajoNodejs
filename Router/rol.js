@@ -27,7 +27,7 @@ Router.get('/', async(req, res)=>{
 
     const result = await listar.find();
     if(result){
-        res.send(result)
+        res.render('../View/Rol', {title:result})
        }else{
         res.send('No se encotro nada')
        }

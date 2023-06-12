@@ -1,0 +1,32 @@
+ {{>head}}
+ {{>nav}}
+ <div style="width: 60%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Ubicacion</th>
+                <th>Estado</th>
+            </tr>
+            <tbody>
+           
+                
+                {{#each title}}
+                    <tr>
+                        <td scope="row">{{_id}}</td>
+                        <td>{{firstName}}</td>
+                        <td>{{lastName}}</td>
+                        <td>{{age}}</td>
+                        <td>{{address}}</td>
+                        <td>{{activo}}</td>
+                    </tr>
+                     
+                {{/each}}
+            
+            </tbody>
+        </table>
+        </div>
+
+        {{>footer}}

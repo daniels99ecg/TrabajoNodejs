@@ -2,11 +2,20 @@ const express=require('express');
 const {MongoClient, ObjectId} = require('mongodb')
 const bodyParser=require('body-parser');
 const responApi=require('./Router/index')
+const hbs=require('hbs');
+
+
 
 const app=express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
+
+hbs.registerPartials(__dirname + '/View', function (err) {});
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/View');
+
+
 
 
 
