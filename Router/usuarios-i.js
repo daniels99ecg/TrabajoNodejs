@@ -96,7 +96,7 @@ Router.put('/', async (req, res)=>{
 
 // DELETE ONE
 
-Router.delete('/:id', async (req, res)=>{
+Router.get('/eliminar/:id', async (req, res)=>{
     const id = req.params.id;
     const result= await eliminar.deleteOne(id);
     if(result){
