@@ -25,7 +25,8 @@ const listar4=new fichaTecnicaEliminar()
 Router.get('/', async (req, res) => { //funcion asincronica
     const result=await listar.find()
     if(result){
-        res.status(200).send(result);
+        res.status(200).render('../View/ficha', {title:result})
+
         
     }else{
         res.status(404).send('No hay fichas tecnicas.');

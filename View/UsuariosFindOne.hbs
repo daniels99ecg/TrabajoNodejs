@@ -1,0 +1,35 @@
+ {{>head title='Usuarios'}}
+ {{>nav}}
+
+ <div style="width: 60%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Ubicacion</th>
+                <th>Estado</th>
+            </tr>
+            <tbody>
+           
+                
+            
+                    <tr>
+                        <td scope="row">{{_id}}</td>
+                        <td>{{title.firstName}}</td>
+                        <td>{{title.lastName}}</td>
+                        <td>{{title.age}}</td>
+                        <td>{{title.address}}</td>
+                        <td>{{title.activo}}</td>
+                    </tr>
+                     
+             
+             
+               
+            
+            </tbody>
+        </table>
+        </div>
+
+        {{>footer}}

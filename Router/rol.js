@@ -38,7 +38,7 @@ Router.get('/:id', async(req, res)=>{
     const id=req.params.id;
     const result= await listar.findOne({id})
     if(result){
-        res.status(200).send(result)
+        res.status(200).render('../View/RolFindOne', {title:result})
       }else{
        res.status(404).send('No se encotro nada')
       }

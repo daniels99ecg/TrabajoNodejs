@@ -1,0 +1,35 @@
+{{>head title='Roles'}}
+{{>nav}}
+    <div style="width: 60%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Id</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Proveedor</th>
+                <th>Estado</th>
+            
+            </tr>
+            <tbody>
+           
+                
+                {{#each title}}
+                    <tr>
+                        <td scope="row">{{_id}}</td>
+                        <td>{{nombre}}</td>
+                        <td>{{precio}}</td>
+                        <td>{{cantidad}}</td>
+                        <td>{{proveedor}}</td>
+                        <td>{{estado}}</td>
+                       
+                    </tr>
+                     
+                {{/each}}
+            
+            </tbody>
+        </table>
+        </div>
+
+
+{{>footer}}

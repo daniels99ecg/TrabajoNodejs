@@ -25,7 +25,7 @@ const listar4=new insumosEliminar()
 Router.get('/', async (req, res) => { //funcion asincronica
     const result=await listar.find()
     if(result){
-        res.status(200).send(result);
+        res.render('../View/insumos', {title:result})
         
     }else{
         res.status(404).send('No hay insumos');

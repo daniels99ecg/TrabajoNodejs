@@ -33,11 +33,11 @@ Router.get('/', async(req, res)=>{
 //Listar
 Router.get('/:id', async(req, res)=>{
     const id=req.params.id;
-
+    
     const result=await Usuarios1.findOne({id});
 
     if(result){
-        res.status(200).send(result)
+        res.render('../View/UsuariosFindOne', {title:result})
       }else{
        res.status(404).send('No se encotro nada')
       }

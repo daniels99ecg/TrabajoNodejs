@@ -1,0 +1,36 @@
+ {{>head title='Usuarios'}}
+ {{>nav}}
+
+ <div >
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Id</th>
+                <th>Cantidad</th>
+                <th>Imagen</th>
+                <th>Costo final</th>
+                <th>Detalle</th>
+                
+            </tr>
+            <tbody>
+           
+                
+                {{#each title}}
+                    <tr>
+                        <td scope="row">{{_id}}</td>
+                        <td>{{cantidad_insumos}}</td>
+                        <td>{{imagen_producto_final}}</td>
+                        <td>{{costo_final_producto}}</td>
+                        <td>{{detalle}}</td>
+                      
+                
+                    </tr>
+                     
+                {{/each}}
+             
+               
+            
+            </tbody>
+        </table>
+        </div>
+
+        {{>footer}}

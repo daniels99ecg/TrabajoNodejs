@@ -1,6 +1,7 @@
  {{>head title='Usuarios'}}
  {{>nav}}
- <div style="width: 60%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
+
+ <div style="width: 70%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
         <table class="table table-striped">
             <tr>
                 <th scope="col">Id</th>
@@ -9,6 +10,7 @@
                 <th>Edad</th>
                 <th>Ubicacion</th>
                 <th>Estado</th>
+                <th>Acccion</th>
             </tr>
             <tbody>
            
@@ -21,9 +23,17 @@
                         <td>{{age}}</td>
                         <td>{{address}}</td>
                         <td>{{activo}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Actualizar</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
                     </tr>
                      
                 {{/each}}
+             
+               
             
             </tbody>
         </table>
