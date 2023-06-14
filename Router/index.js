@@ -13,10 +13,16 @@ const routerCollection3 = require('./routesCollection3');
 
 const routerProductos=require('./productos.js');
 
+const routerClientes=require('./routerClientes.js')
+const routerCompras=require('./routerCompras.js')
+
+
+
 function responApi(app){
     app.use('/movies', restMovies);
     app.use('/comment', restComment);
     app.use('/session', restSession);
+
     app.use('/usuarios', restUsuario);
     app.use('/rol', resRol);
     app.use('/ficha', resFicha);
@@ -28,6 +34,9 @@ function responApi(app){
     app.use('/estado', routerCollection3);
 
     app.use('/productos', routerProductos);
+
+    app.use('/clientes', routerClientes);
+    app.use('/compras', routerCompras);
 }
 
 module.exports=responApi;
