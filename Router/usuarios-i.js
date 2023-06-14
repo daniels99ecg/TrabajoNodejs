@@ -20,6 +20,7 @@ const insertar=new UsuariosInsertar();
 const actualizar=new UsuariosActualizar();
 const eliminar=new UsuariosDelete();
 
+//Archivo con vista 
 Router.get('/', async(req, res)=>{
 
    const result=await Usuarios1.find();
@@ -30,6 +31,16 @@ Router.get('/', async(req, res)=>{
        }
 })
 
+//Archivo solo formato Json
+Router.get('/pruebas', async(req, res)=>{
+
+    const result=await Usuarios1.find();
+     if(result){
+         res.send(result)
+        }else{
+         res.send('No se encotro nada')
+        }
+ })
 //Listar
 Router.get('/:id', async(req, res)=>{
     const id=req.params.id;
@@ -43,6 +54,18 @@ Router.get('/:id', async(req, res)=>{
       }
 });       
 
+//Archivo sin vista para el finOne
+Router.get('/pruebas/:id', async(req, res)=>{
+    const id=req.params.id;
+    
+    const result=await Usuarios1.findOne({id});
+
+    if(result){
+        res.status(200).send(result)
+      }else{
+       res.status(404).send('No se encotro nada')
+      }
+});
 
 //Insertar
 Router.post('/', async(req, res)=>{
@@ -97,6 +120,21 @@ Router.put('/', async (req, res)=>{
 // DELETE ONE
 
 Router.get('/eliminar/:id', async (req, res)=>{
+    const id = req.params.id;
+    const result= await eliminar.deleteOne(id);
+    if(result){
+        res.status(200).json({
+            message: 'Se borro la pelicula',
+            result,
+            //data: body
+        });
+    }else{
+        res.status(404).send("No se actualizo la pelicula");
+    }
+    
+})
+//Archivo delete sin vista
+Router.delete('/pruebas/:id', async (req, res)=>{
     const id = req.params.id;
     const result= await eliminar.deleteOne(id);
     if(result){

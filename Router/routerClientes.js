@@ -18,6 +18,7 @@ const listar = new clientesFind()
 const insertar = new clientesInsertar()
 const actualizar = new clientesUpdate()
 const eliminar = new clientesDelete()
+
 Router.get('/', async(req, res)=>{ //Funcion asincronica
     
     const result = await listar.find()

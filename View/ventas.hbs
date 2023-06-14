@@ -1,0 +1,44 @@
+ {{>head title='Ventas'}}
+ {{>nav}}
+
+
+ <div style="width: 70%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Producto</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Acccion</th>
+            </tr>
+            <tbody>
+           
+             
+                {{#each title}}
+                
+                    <tr>
+                        <td scope="row">{{_id}}</td>
+                        <td>{{nombre}}</td>
+                        <td>{{apellido}}</td>
+                        <td>{{producto}}</td>
+                        <td>{{fecha}}</td>
+                        <td>{{total}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Actualizar</button>
+                        </td>
+                        <td>
+                           <a href="/usuarios/eliminar/{{_id}}"> <button type="button" class="btn btn-danger">Eliminar</button></a>
+                        </td>
+                    </tr>
+                     
+                {{/each}}
+             
+               
+            
+            </tbody>
+        </table>
+        </div>
+
+        {{>footer}}

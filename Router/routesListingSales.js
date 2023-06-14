@@ -40,10 +40,15 @@ router.get('/', async (req, res) => {
     const collection3 = await search.find();
     
     if(collection3){
-    res.status(200).send({
-        "message": 'Found collection',
-        collection3
-    });
+
+    // res.status(200).send({
+    //     "message": 'Found collection',
+    //     collection3
+   
+    // });
+    res.status(200).render('../View/ventas', {title:collection3});
+
+
     }else{
         res.status(404).send("Collection not found");
     }
