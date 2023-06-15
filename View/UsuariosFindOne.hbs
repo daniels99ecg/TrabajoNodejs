@@ -10,18 +10,25 @@
                 <th>Edad</th>
                 <th>Ubicacion</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
             <tbody>
            
                 
             
                     <tr>
-                        <td scope="row">{{_id}}</td>
+                        <td scope="row">{{title._id}}</td>
                         <td>{{title.firstName}}</td>
                         <td>{{title.lastName}}</td>
                         <td>{{title.age}}</td>
                         <td>{{title.address}}</td>
                         <td>{{title.activo}}</td>
+                        <td>
+                            <a href="/usuarios/update/{{title._id}}"><button type="button" class="btn btn-primary">Actualizar</button></a>
+                        </td>
+                        <td>
+                           <a href="/usuarios/eliminar/{{title._id}}"> <button type="button" class="btn btn-danger">Eliminar</button></a>
+                        </td>
                     </tr>
                      
              

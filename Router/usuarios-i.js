@@ -42,8 +42,8 @@ Router.get('/pruebas', async(req, res)=>{
         }
  })
 //Listar
-Router.get('/:id', async(req, res)=>{
-    const id=req.params.id;
+Router.post('/buscar/', async(req, res)=>{
+    const id=req.body.id;
     
     const result=await Usuarios1.findOne({id});
 
