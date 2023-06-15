@@ -1,4 +1,5 @@
 const {MongoClient, ObjectId} = require('mongodb')
+const bodyParser=require('body-parser');
 
 require('dotenv').config();
 const uri=process.env.URI;
@@ -8,13 +9,24 @@ class UsuariosActualizar{
 
 
 
-async updateOne(id, body){
+async updateOne(id, nombre, apellido, edad, direccion){
    
   
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const result = await client.db('sample_airbnb').collection('PubligrafitNode').updateOne({_id: new ObjectId(id)},{$set:{activo:body}});
+        const result = await client.db('sample_airbnb').collection('PubligrafitNode').updateOne(
+            {_id: new ObjectId(id)},{$set:{
+                
+                
+                'firstName':nombre,
+                'lastName':apellido,  
+                'age':edad,
+                'address':direccion,
+                
+                
+            }}
+            );
         return result;
     }catch(e){
         console.log(e);

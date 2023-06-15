@@ -1,0 +1,41 @@
+ {{>head title='Actualizar Usuarios'}}
+ {{>nav}}
+
+              <div style="width: 30%;">
+                <form action="in/{{title._id}}" method="POST">
+                <div class="mb-3">
+                    
+                  <label for="idn" class="form-label">Id</label>
+                  <input type="text" class="form-control" id="idn" aria-describedby="emailHelp"  value="{{title._id}}" disabled>
+            
+                </div>
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" value="{{title.firstName}}">
+                </div>
+
+                 <div class="mb-3">
+                  <label for="apellido" class="form-label">Apellido</label>
+                  <input type="text" class="form-control" id="apellido" name="apellido" value="{{title.lastName}}">
+                </div>
+
+                <div class="mb-3">
+                  <label for="edad" class="form-label">Edad</label>
+                  <input type="text" class="form-control" id="edad" name="edad" value="{{title.age}}">
+                </div>
+
+                    <div class="mb-3">
+                  <label for="direccion" class="form-label">Direccion</label>
+                  <input type="text" class="form-control" id="direccion" name="direccion" value="{{title.address}}">
+                </div>
+
+                 <div class="mb-3">
+                  <label for="estado" class="form-label">Estado</label>
+                  <input type="text" class="form-control" id="estado" name="estado" value="{{title.activo}}">
+                </div>
+                <button class="btn btn-primary">Actualizar</button>
+
+                </form>
+                </div>
+
+        {{>footer}}

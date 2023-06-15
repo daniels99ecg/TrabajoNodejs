@@ -52,7 +52,20 @@ Router.get('/:id', async(req, res)=>{
       }else{
        res.status(404).send('No se encotro nada')
       }
-});       
+});  
+
+//Actualizar Pruebas envio de cosas
+Router.get('/update/:id', async(req, res)=>{
+    const id=req.params.id;
+    
+    const result=await Usuarios1.findOne({id});
+
+    if(result){
+        res.render('../View/usuarioupdate', {title:result})
+      }else{
+       res.status(404).send('No se encotro nada')
+      }
+})
 
 //Archivo sin vista para el finOne
 Router.get('/pruebas/:id', async(req, res)=>{
@@ -85,12 +98,21 @@ Router.post('/', async(req, res)=>{
 
 
 //Update
-Router.patch('/:id', async (req, res)=>{
+Router.post('/update/in/:id', async (req, res)=>{
     const id = req.params.id;
-    const body = req.body.body;
-    const result= await actualizar.updateOne(id,body);
+
+    const nombre=req.body.nombre; 
+    const apellido=req.body.apellido;
+    const edad=parseInt( req.body.edad);
+    const direccion=req.body.direccion; 
+    
+    
+
+
+    const result= await actualizar.updateOne(id, nombre, apellido, edad, direccion);
 
     if(result){
+        
         res.status(200).json({
             message: 'Se actualizo la pelicula',
             result,
@@ -100,6 +122,8 @@ Router.patch('/:id', async (req, res)=>{
         res.status(404).send("No se actualizo la pelicula");
     }
 })
+
+
 //UPDATE MANY
 Router.put('/', async (req, res)=>{
     const body = req.body;
