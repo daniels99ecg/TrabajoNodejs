@@ -2,13 +2,13 @@
  {{>nav}}
 
 
-
+<br>
  <div style="width: 70%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
     <form action="usuarios/buscar/{{title._id}}" method="post">
-<input type="text" name="id">
-<button>Buscar</button>
+        <input type="text" name="id" class="form-control" placeholder="Buscar...">
+        <button class="btn btn-primary" >Buscar</button>
 
-</form>
+    </form>
         <table class="table table-striped">
             <tr>
                 <th scope="col">Id</th>
