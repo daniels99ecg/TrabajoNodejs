@@ -40,6 +40,90 @@ async findOne(id){
 }
 
 
+
+async findLimit(){
+    const client=new MongoClient(uri)
+   
+    try {
+
+        await client.connect();
+        const result=await client.db('sample_airbnb').collection('PubligrafitNode').find({}).skip(5).limit(3).toArray();
+        return result;
+
+     
+    } catch (e) {
+        console.error(e)
+    }finally{
+        await client.close();
+    }
+}
+
+
+
+// lookup
+async aggregate(){
+    const client=new MongoClient(uri)
+   
+    try {
+
+        await client.connect();
+        const result=await client.db('sample_airbnb').collection('PubligrafitNode').aggregate([
+            {
+                $lookup: {
+                    from: "rol",
+                    localField: "'_id'",
+                    foreignField: "'id_rol'",
+                    as: "asignacion"
+                          }
+        },
+           {
+              $limit: 5
+           },
+           {
+            $sort:{firstName:1}
+           }
+               
+
+        
+    ]).toArray();
+
+        return result;
+
+     
+    } catch (e) {
+        console.error(e)
+    }finally{
+        await client.close();
+    }
+}
+
+
+
+//Unwind
+
+async unwind(){
+    const client=new MongoClient(uri)
+   
+    try {
+
+        await client.connect();
+        const result=await client.db('sample_airbnb').collection('PubligrafitNodeArray').aggregate([
+            {$unwind: '$sizes'}   
+
+        
+    ]).toArray();
+
+        return result;
+
+     
+    } catch (e) {
+        console.error(e)
+    }finally{
+        await client.close();
+    }
+}
+
+
 }
 
 

@@ -31,16 +31,19 @@ Router.get('/', async(req, res)=>{
        }
 })
 
-//Archivo solo formato Json
-Router.get('/pruebas', async(req, res)=>{
+//Find con salto y limite
+Router.get('/limite', async(req, res)=>{
 
-    const result=await Usuarios1.find();
+    const result=await Usuarios1.findLimit();
      if(result){
-         res.send(result)
+        //  res.send(result)
+        res.render('../View/Usuarios', {title:result})
         }else{
          res.send('No se encotro nada')
         }
  })
+
+
 //Listar
 Router.post('/buscar/', async(req, res)=>{
     const id=req.body.id;
@@ -187,6 +190,36 @@ Router.delete('/', async (req, res)=>{
     }
    
 })
+
+
+
+//aggregate
+Router.get('/agregacion', async(req, res)=>{
+
+    const result=await Usuarios1.aggregate();
+     if(result){
+        res.send(result)
+       
+        }else{
+         res.send('No se encotro nada')
+        }
+ })
+   
+//unwind
+ Router.get('/array', async(req, res)=>{
+
+    const result=await Usuarios1.unwind();
+     if(result){
+        res.send(result)
+       
+        }else{
+         res.send('No se encotro nada')
+        }
+ })
+   
+
+
+
 
 
 module.exports=Router;
