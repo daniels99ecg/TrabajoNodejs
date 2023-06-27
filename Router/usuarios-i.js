@@ -43,8 +43,32 @@ Router.get('/limite', async(req, res)=>{
         }
  })
 
+//Insertar Usuarios
+Router.get('/create', async(req, res)=>{ 
+        res.status(200).render('../View/UsuariosInsertar')
+    
+});
 
-//Listar
+Router.post('/create/in', async(req, res)=>{
+    const nombre= req.body.nombre;
+    const apellido=req.body.apellido;
+    const edad=parseInt(req.body.edad);
+    const ubicacion =req.body.ubicacion;
+   
+
+        const result= await insertar.insertMany(nombre, apellido, edad, ubicacion);
+   
+    if(result){
+        res.redirect('/usuarios')
+      }else{
+       res.status(404).send('No se agrego la pelicula')
+      }
+});
+
+
+
+
+//Listar por uno solo
 Router.post('/buscar/', async(req, res)=>{
     const id=req.body.id;
     
@@ -116,11 +140,7 @@ Router.post('/update/in/:id', async (req, res)=>{
 
     if(result){
         
-        res.status(200).json({
-            message: 'Se actualizo la pelicula',
-            result,
-            //data: body
-        });
+        res.status(200).redirect('/usuarios')
     }else{
         res.status(404).send("No se actualizo la pelicula");
     }
@@ -150,11 +170,7 @@ Router.get('/eliminar/:id', async (req, res)=>{
     const id = req.params.id;
     const result= await eliminar.deleteOne(id);
     if(result){
-        res.status(200).json({
-            message: 'Se borro la pelicula',
-            result,
-            //data: body
-        });
+        res.status(200).redirect('/usuarios')
     }else{
         res.status(404).send("No se actualizo la pelicula");
     }
@@ -186,7 +202,7 @@ Router.delete('/', async (req, res)=>{
             //data: body
         });
     }else{
-        res.status(404).send("No se actualizo la pelicula");
+        res.status(404).send("No se elimino las pelicula");
     }
    
 })
@@ -198,7 +214,7 @@ Router.get('/agregacion', async(req, res)=>{
 
     const result=await Usuarios1.aggregate();
      if(result){
-        res.send(result)
+        res.status(200).render('../View/UsuarioRolAgregacion', {title:result})
        
         }else{
          res.send('No se encotro nada')

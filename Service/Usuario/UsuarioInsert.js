@@ -8,14 +8,22 @@ class UsuariosInsertar{
 
 
 
-async insertMany(body){
+async insertMany(nombre, apellido, edad, ubicacion){
     
     const client=new MongoClient(uri)
    
     try {
 
         await client.connect();
-        const result=await client.db('sample_airbnb').collection('PubligrafitNode').insertMany([body]);
+        const result=await client.db('sample_airbnb').collection('PubligrafitNode').insertMany([
+            {
+            "firstName":nombre, 
+            "lastName":apellido, 
+            "age":edad, 
+            "address":ubicacion, 
+            "activo":true
+        }
+    ]);
         return result;
     } catch (e) {
         console.error(e)

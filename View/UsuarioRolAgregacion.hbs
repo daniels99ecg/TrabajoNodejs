@@ -1,0 +1,43 @@
+ {{>head title='Usuarios'}}
+ {{>nav}}
+
+
+<br>
+ 
+    </div>
+
+     <div style="width: 70%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Rol</th>
+                
+            </tr>
+            <tbody>
+           
+             
+                {{#each title}}
+                
+                    <tr>
+                        <td scope="row">{{_id}}</td>
+                        <td>{{firstName}}</td>
+                        <td>{{lastName}}</td>
+                        <td>{{age}}</td>
+                        {{#each asignacion}}
+                       <td>{{nameRol}}</td>
+                       {{/each}}
+                        
+                    </tr>
+                     
+                {{/each}}
+             
+               
+            
+            </tbody>
+        </table>
+        </div>
+
+        {{>footer}}
