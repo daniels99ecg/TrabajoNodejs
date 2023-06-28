@@ -1,7 +1,6 @@
 const {MongoClient, ObjectId} = require('mongodb');
+
 const uri = "mongodb+srv://andres:admin353@cluster0.etevk7a.mongodb.net/?retryWrites=true&w=majority";
-
-
 class listingDelete{
 
     constructor(){}

@@ -1,0 +1,41 @@
+{{>head title='Ventas'}}
+{{>nav}}
+<br>
+<br>
+
+<div style="width: 70%; height:600px; margin-left:15%; overflow-x:hidden;">
+    <table class="table table-striped">
+    
+    <tr>
+        <th scope="col">Id</th>
+        <th>DNI Cliente</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Producto</th>
+        <th>Total</th>
+        <th>Acción</th>
+        <th></th>
+    </tr>
+<tbody>
+                
+    <tr>
+        <td scope="row">{{_id}}</td>
+        <td>{{title.dni_cliente}}</td>
+        <td>{{title.nombre}}</td>
+        <td>{{title.apellido}}</td>
+        <td>{{title.producto}}</td>
+        <td>{{title.total}}</td>
+        <td>
+            <a href="/ventas/update/{{title._id}}"><button type="button" class="btn btn-primary">Update</button></a>
+        </td>
+        
+        <td>
+            <a href="/ventas/eliminar/{{title._id}}"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+    </tr>
+                    
+</tbody>
+</table>
+</div>
+
+{{>footer}}

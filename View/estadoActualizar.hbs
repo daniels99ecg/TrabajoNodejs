@@ -1,0 +1,39 @@
+{{>head title='Ventas'}}
+{{>nav}}
+
+<h1 style="margin-left: 41%; color:#0d6efd;">Update Form</h1>
+
+<div style="width: 30%; margin:auto;  padding:1%;">
+<form action="set/{{title._id}}" method="POST">
+<div class="mb-3">
+                    
+  <label for="idn" class="form-label"></label>
+   <input type="text" class="form-control" id="id" aria-describedby="emailHelp"  value="{{title._id}}" disabled>
+            
+</div>
+<div class="mb-3">
+  <label for="nombre" class="form-label">Cantidad</label>
+  <input type="text" class="form-control" id="cantidad" name="cantidad" value="{{title.cantidad}}">
+</div>
+
+  <div class="mb-3">
+  <label for="apellido" class="form-label">Metodo Compra</label>
+  <input type="text" class="form-control" id="compra" name="compra" value="{{title.metodocompra}}">
+</div>
+
+<div class="mb-3">
+  <label for="edad" class="form-label">Opiniones</label>
+  <input type="text" class="form-control" id="opiniones" name="opiniones" value="{{title.opiniones}}">
+</div>
+
+    <div class="mb-3">
+  <label for="direccion" class="form-label">Estado</label>
+  <input type="text" class="form-control" id="estado" name="estado" value="{{title.estado}}">
+</div>
+
+<button class="btn btn-primary">Update</button>
+
+</form>
+</div>
+
+{{>footer}}

@@ -23,6 +23,13 @@ const insertar=new RolInsertar();
 const actualizar=new RolActualizar();
 const eliminar=new RolEliminar();
 
+
+Router.get('/create', async(req, res)=>{
+    
+    res.render('../View/RolInsertar')
+  
+});
+
 Router.get('/', async(req, res)=>{
 
     const result = await listar.find();
@@ -44,18 +51,28 @@ Router.get('/:id', async(req, res)=>{
       }
 });
 
+Router.post('/buscar', async(req, res)=>{
+    const id=req.body.id;
+    const nombreRol=req.body.nombreRol;
+    const result= await listar.findOne({id})
+    if(result){
+        res.status(200).render('../View/RolFindOne', {title:result})
+      }else{
+       res.status(404).send('No se encotro nada')
+      }
+});
 
 
-Router.post('/', async(req, res)=>{
-    const body=req.body;
 
-    const result = await insertar.findOne(body)
+
+Router.post('/create/in', async(req, res)=>{
+ 
+    const nombre=req.body.nombre;
+    const fecha=new Date();
+    const descripcion=req.body.descripcion;
+    const result = await insertar.insertMany(nombre, fecha, descripcion)
        if(result){
-         res.status(200).json({
-            message: 'Se creo la pelicula',
-            result,
-        
-         });
+         res.status(200).redirect('/rol')
        }else{
         res.status(404).send('No se agrego la pelicula')
        }
@@ -63,23 +80,35 @@ Router.post('/', async(req, res)=>{
     
 });
 
-
-
-Router.patch('/:id', async (req, res)=>{
+Router.get('/update/:id', async(req, res)=>{
     const id=req.params.id;
-    const body = req.body;
-    const result = await actualizar.updateOne(id, body);
+    const result= await listar.findOne({id})
+    if(result){
+        res.status(200).render('../View/RolUpdate', {title:result})
+      }else{
+       res.status(404).send('No se encotro nada')
+      }
+});
+
+Router.post('/update/in/:id', async (req, res)=>{
+    const id=req.params.id;
+   const nombre=req.body.nombre;
+   const fecha=new Date();
+   const descripcion=req.body.descripcion;
+
+    const result = await actualizar.updateOne(id, nombre, fecha, descripcion);
         if(result){
-            res.status(200).json({
-                message: 'Se actualizo la pelicula',
-                result,
-                //data: body
-            });
+            res.status(200).redirect('/rol')
         }else{
             res.status(404).send("No se actualizo la pelicula");
         }
     
 })
+
+
+
+
+
 //UPDATE MANY
 Router.put('/', async (req, res)=>{
 
@@ -100,16 +129,12 @@ Router.put('/', async (req, res)=>{
 
 
 // DELETE ONE
-Router.delete('/:id', async (req, res)=>{
+Router.get('/eliminar/:id', async (req, res)=>{
     const id = req.params.id;
   
     const result = await eliminar.deleteOne(id);
         if(result){
-            res.status(200).json({
-                message: 'Se borro la pelicula',
-                result,
-                //data: body
-            });
+            res.status(200).redirect('/rol')
         }else{
             res.status(404).send("No se actualizo la pelicula");
         }

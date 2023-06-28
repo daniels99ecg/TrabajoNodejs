@@ -31,7 +31,7 @@ async findOne(id){
     try {
 
         await client.connect();
-        const result=await client.db('sample_airbnb').collection('rol').findOne({_id:new ObjectId(id) });
+        const result=await client.db('sample_airbnb').collection('rol').findOne({_id:new ObjectId(id)});
         return result
     } catch (e) {
         console.error(e)

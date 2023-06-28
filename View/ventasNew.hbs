@@ -1,0 +1,39 @@
+{{>head title='Ventas'}}
+{{>nav}}
+
+<h1 style="margin-left: 41%; color:#0d6efd;">Register Form</h1>
+
+<div style="width: 30%; margin:auto;  padding:1%;">
+<form action="insert/new" method="POST">
+
+<div class="mb-3">
+  <label class="form-label">DNI Cliente</label>
+  <input type="text" class="form-control" id="cliente" name="cliente">
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Nombre</label>
+  <input type="text" class="form-control" id="nombre" name="nombre">
+</div>
+
+  <div class="mb-3">
+  <label class="form-label">Apellido</label>
+  <input type="text" class="form-control" id="apellido" name="apellido">
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Producto</label>
+  <input type="text" class="form-control" id="producto" name="producto">
+</div>
+
+    <div class="mb-3">
+  <label class="form-label">Total</label>
+  <input type="text" class="form-control" id="total" name="total">
+</div>
+
+<button class="btn btn-primary">Register</button>
+
+</form>
+</div>
+
+{{>footer}}

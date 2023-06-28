@@ -1,0 +1,44 @@
+{{>head title='Ventas'}}
+{{>nav}}
+
+<h1 style="margin-left: 41%; color:#0d6efd;">Update Form</h1>
+
+<div style="width: 30%; margin:auto;  padding:1%;">
+<form action="set/{{title._id}}" method="POST">
+<div class="mb-3">
+                    
+  <label for="idn" class="form-label"></label>
+  <input type="text" class="form-control" id="id" aria-describedby="emailHelp"  value="{{title._id}}" disabled>
+            
+</div>
+<div class="mb-3">
+  <label for="nombre" class="form-label">DNI Cliente</label>
+  <input type="text" class="form-control" id="cliente" name="cliente" value="{{title.dni_cliente}}">
+</div>
+
+<div class="mb-3">
+  <label for="nombre" class="form-label">Nombre</label>
+  <input type="text" class="form-control" id="nombre" name="nombre" value="{{title.nombre}}">
+</div>
+
+  <div class="mb-3">
+  <label for="apellido" class="form-label">Apellido</label>
+  <input type="text" class="form-control" id="apellido" name="apellido" value="{{title.apellido}}">
+</div>
+
+<div class="mb-3">
+  <label for="edad" class="form-label">Producto</label>
+  <input type="text" class="form-control" id="producto" name="producto" value="{{title.producto}}">
+</div>
+
+    <div class="mb-3">
+  <label for="direccion" class="form-label">Total</label>
+  <input type="text" class="form-control" id="total" name="total" value="{{title.total}}">
+</div>
+
+<button class="btn btn-primary">Update</button>
+
+</form>
+</div>
+
+{{>footer}}

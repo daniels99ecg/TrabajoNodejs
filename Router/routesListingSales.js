@@ -21,15 +21,35 @@ const erase = new listingErase();
 // insertMany()
 router.post('/', async (req, res) => { 
     const body = req.body;
-    const collection3 = await register.insertMany(body);
+    const listingSales = await register.insertMany(body);
  
-    if (collection3){
+    if (listingSales){
     res.status(200).json({
         "message" : 'Created sales',
-        collection3
+        listingSales
     });
     }else{
         res.status(404).send("Sales not created");
+    }
+})
+
+router.get('/insert', async (req, res) => {
+    res.status(200).render('../View/ventasNew')
+})
+
+router.post('/insert/new', async (req, res) =>{
+    const cliente = parseInt(req.body.cliente);
+    const nombre = req.body.nombre;
+    const apellido = req.body.apellido;
+    const producto = req.body.producto;
+    const total = req.body.total;
+    
+    const listingSales = await register.regist(cliente, nombre, apellido, producto, total);
+
+    if (listingSales){
+        res.status(200).redirect('/ventas')
+    }else{
+        res.status(404).send('Record not added')
     }
 })
 
@@ -37,33 +57,45 @@ router.post('/', async (req, res) => {
 
 // find()
 router.get('/', async (req, res) => { 
-    const collection3 = await search.find();
+    const listingSales = await search.find();
     
-    if(collection3){
-
-    // res.status(200).send({
-    //     "message": 'Found collection',
-    //     collection3
-   
-    // });
-    res.status(200).render('../View/ventas', {title:collection3});
-
-
+    if(listingSales){
+    res.status(200).render('../View/ventas', {title:listingSales})
     }else{
         res.status(404).send("Collection not found");
     }
 })
 
+// findSkiLi()
+router.get('/resultado', async (req, res) => {
+    const listingSales = await search.findSkiLi();
+
+    if (listingSales){
+    res.status(200).render('../View/ventas', {title:listingSales})
+    }else{
+        res.status(404).send("Collection not found");
+   }
+})
+
 // findOne()
-router.get('/:id', async (req, res) => { 
-    const id = req.params.id;
-    const collection3 = await search.findOne({id});
+router.post('/searching/', async (req, res) => { 
+    const id = req.body.id;
+    const listingSales = await search.findOne({id});
     
-    if (collection3){
-    res.status(200).send({
-        "message": 'Found collection',
-        collection3
-    });
+    if (listingSales){
+    res.status(200).render('../View/ventasFindOne', {title:listingSales})
+    }else{
+        res.status(404).send("Collection not found");
+   }
+})
+
+// findOne()
+router.get('/update/:id', async (req, res) => { 
+    const id = req.params.id;
+    const listingSales = await search.findOne({id});
+    
+    if (listingSales){
+    res.status(200).render('../View/ventasActualizar', {title:listingSales})
     }else{
         res.status(404).send("Collection not found");
    }
@@ -72,17 +104,17 @@ router.get('/:id', async (req, res) => {
 // UPDATE
 
 // updateOne()
-router.patch('/:id', async (req, res) => { 
+router.post('/update/set/:id', async (req, res) => { 
     const id = req.params.id;
-    const listing_nombre = req.body.nombre;
-    const listing_apellido = req.body.apellido;
-    const collection3 = await upda.updateOne(id, listing_nombre, listing_apellido);
+    const cliente = parseInt(req.body.cliente);
+    const nombre = req.body.nombre;
+    const apellido = req.body.apellido;
+    const producto = req.body.producto;
+    const total = req.body.total;
+    const listingSales = await upda.updateOne(id, cliente, nombre, apellido, producto, total);
     
-    if (collection3){
-        res.status(200).json({
-        "message" : 'Sale update',
-        collection3
-    });
+    if (listingSales){
+        res.status(200).redirect('/ventas')
 
    }else{
         res.status(404).send("Sale not update");
@@ -92,12 +124,12 @@ router.patch('/:id', async (req, res) => {
 // updateMany()
 router.patch('/', async (req, res) => { 
     const listing_producto = req.body.producto;
-    const collection3 = await upda.updateMany(listing_producto);
+    const listingSales = await upda.updateMany(listing_producto);
 
-    if (collection3){
+    if (listingSales){
         res.status(200).json({
         "message": 'Update sale',
-        collection3
+        listingSales
     });
 
    }else{
@@ -108,18 +140,15 @@ router.patch('/', async (req, res) => {
 // DELETE
 
 // deleteOne()
-router.delete('/:id', async (req, res) => { 
+router.get('/eliminar/:id', async (req, res) => { 
     const id = req.params.id;
-    const collection3 = erase.deleteOne({id});
+    const listingSales = erase.deleteOne({id});
    
-    if (collection3){
-    res.status(200).json({
-        "message" : 'Deleted sale',
-        collection3
-    });
+    if (listingSales){
+        res.status(200).redirect('/ventas')
 
    }else{
-    res.status(404).send("Sale not deleted");
+        res.status(404).send("Sale not deleted");
 
    }
 })
@@ -127,12 +156,12 @@ router.delete('/:id', async (req, res) => {
 // deleteMany()
 router.delete('/', async (req, res) => { 
     const body = req.body;
-    const collection3 = erase.deleteMany(body);
+    const listingSales = erase.deleteMany(body);
 
-    if(collection3){
+    if(listingSales){
     res.status(200).json({
         "message": 'Deleted sales',
-        collection3
+        listingSales
     });
 
    }else{

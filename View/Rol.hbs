@@ -1,5 +1,20 @@
 {{>head title='Roles'}}
 {{>nav}}
+
+<br>
+<div style="width: 50%; margin-left:15%;">
+    <a href="create"><button type="button" class="btn btn-primary">Registrar</button></a>
+ 
+    <form action="/rol/buscar/{{title.id}}" method="post" >
+       <br>
+       
+        <input type="text" name="id" class="form-control" placeholder="Buscar...">
+       
+    <button class="btn btn-primary" >Buscar</button>
+
+    </form>
+    </div>
+
     <div style="width: 60%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
         <table class="table table-striped">
             <tr>
@@ -7,7 +22,7 @@
                 <th>Nombre</th>
                 <th>Fecha</th>
                 <th>descripcion</th>
-            
+                <th>Acccion</th>
             </tr>
             <tbody>
            
@@ -18,7 +33,12 @@
                         <td>{{nameRol}}</td>
                         <td>{{fecha}}</td>
                         <td>{{descripcion}}</td>
-                       
+                       <td>
+                            <a href="/rol/update/{{_id}}"><button type="button" class="btn btn-primary">Actualizar</button></a>
+                        </td>
+                        <td>
+                           <a href="/rol/eliminar/{{_id}}"> <button type="button" class="btn btn-danger">Eliminar</button></a>
+                        </td>
                     </tr>
                      
                 {{/each}}

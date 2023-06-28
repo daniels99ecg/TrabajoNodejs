@@ -8,13 +8,20 @@ class UsuariosActualizar{
 
 
 
-async updateOne(id, body){
+async updateOne(id, nombre, fecha, descripcion){
    
   
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const result = await client.db('sample_airbnb').collection('rol').updateOne({_id: new ObjectId(id)},{$set:{body}});
+        const result = await client.db('sample_airbnb').collection('rol').updateOne({_id: new ObjectId(id)},{$set:{
+
+
+            "nameRol": nombre,
+            "fecha":fecha,
+            "descripcion": descripcion,
+            "id_rol":23
+        }});
         return result;
     }catch(e){
         console.log(e);

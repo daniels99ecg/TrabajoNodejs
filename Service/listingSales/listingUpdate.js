@@ -1,14 +1,13 @@
 const {MongoClient, ObjectId} = require('mongodb');
+require('dotenv').config();
 const uri = "mongodb+srv://andres:admin353@cluster0.etevk7a.mongodb.net/?retryWrites=true&w=majority";
-
-
 class listingUpdate{
 
     constructor(){}
   
     // UPDATE
     
-async updateOne(id, listing_nombre, listing_apellido){
+async updateOne(id, cliente, nombre, apellido, producto, total){
     const client = new MongoClient(uri);
 
     try {
@@ -17,8 +16,11 @@ async updateOne(id, listing_nombre, listing_apellido){
             "_id": new ObjectId(id)
         },{
             $set:{
-                nombre: listing_nombre, 
-                apellido: listing_apellido
+                dni_cliente: cliente,
+                nombre: nombre, 
+                apellido: apellido,
+                producto: producto,
+                total: total
             }
         });  
     return listingSales;

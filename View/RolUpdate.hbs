@@ -1,0 +1,24 @@
+ {{>head title='Usuarios'}}
+ {{>nav}}
+
+
+<br>
+ <div style="width: 30%; margin:auto;">
+    <h1>Actualizar Rol</h1><br>
+    <form action="in/{{title._id}}" method="POST">
+        <input type="text" name="nombre" class="form-control" value="{{title.nameRol}}" placeholder="Nombre...">
+        <br>
+        <input type="text" name="fecha" class="form-control" value="{{title.fecha}}" placeholder="Fecha...">
+<br>
+        <input type="text" name="descripcion" class="form-control" value="{{title.descripcion}}" placeholder="Descripcion...">
+<br>
+    
+<br>
+      
+        <button class="btn btn-primary" >Actualizar</button>
+
+    </form>
+        
+        </div>
+
+        {{>footer}}

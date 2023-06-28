@@ -7,13 +7,19 @@ class UsuariosInsertar{
  constructor(){}
 
 
-async findOne(body){
+async insertMany(nombre, fecha, descripcion){
     const client=new MongoClient(uri)
    
     try {
 
         await client.connect();
-        const result=await client.db('sample_airbnb').collection('rol').insertMany([body]);
+        const result=await client.db('sample_airbnb').collection('rol').insertMany([{
+
+            "nameRol": nombre,
+            "fecha":fecha,
+            "descripcion": descripcion,
+            "id_rol":23
+        }]);
         return result
     } catch (e) {
         console.error(e)

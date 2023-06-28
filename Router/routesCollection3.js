@@ -33,6 +33,25 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.get('/insert', async (req, res) => {
+    res.status(200).render('../View/estadoNew')
+})
+
+router.post('/insert/new', async (req, res) =>{
+    const cantidad = parseInt(req.body.cantidad);
+    const compra = req.body.compra;
+    const opiniones = req.body.opiniones;
+    const estado = req.body.estado;
+    
+    const collection3 = await register.regist(cantidad, compra, opiniones, estado);
+
+    if (collection3){
+        res.status(200).redirect('/estado')
+    }else{
+        res.status(404).send('Record not added')
+    }
+})
+
 // READ
 
 // find()
@@ -40,25 +59,46 @@ router.get('/', async (req, res) => {
     const collection3 = await search.find();
     
     if(collection3){
-    res.status(200).send({
-        "message": 'Found collection',
-        collection3
-    });
+    res.status(200).render('../View/estado', {title:collection3})
+    
+    }else{
+        res.status(404).send("Collection not found");
+    }
+})
+
+// findSkiLi()
+router.get('/resultado', async (req, res) => { 
+    const collection3 = await search.findSkiLi();
+    
+    if(collection3){
+    res.status(200).render('../View/estado', {title:collection3})
+    
     }else{
         res.status(404).send("Collection not found");
     }
 })
 
 // findOne()
-router.get('/:id', async (req, res) => { 
+router.post('/searching/', async (req, res) => { 
+    const id = req.body.id;
+    const collection3 = await search.findOne({id});
+    
+    if (collection3){
+    res.status(200).render('../View/estadoFindOne', {title:collection3})
+    
+    }else{
+        res.status(404).send("Collection not found");
+   }
+})
+
+// findOne()
+router.get('/update/:id', async (req, res) => { 
     const id = req.params.id;
     const collection3 = await search.findOne({id});
     
     if (collection3){
-    res.status(200).send({
-        "message": 'Found collection',
-        collection3
-    });
+    res.status(200).render('../View/estadoActualizar', {title:collection3})
+    
     }else{
         res.status(404).send("Collection not found");
    }
@@ -67,17 +107,16 @@ router.get('/:id', async (req, res) => {
 // UPDATE
 
 // updateOne()
-router.patch('/:id', async (req, res) => { 
+router.post('/update/set/:id', async (req, res) => { 
     const id = req.params.id;
-    const cole3_cantidad = req.body.cantidad;
-    const cole3_estado = req.body.estado;
-    const collection3 = await upda.updateOne(id, cole3_cantidad, cole3_estado);
+    const compra = req.body.compra;
+    const opiniones = req.body.opiniones;
+    const cantidad = parseInt(req.body.cantidad);
+    const estado = req.body.estado;
+    const collection3 = await upda.updateOne(id, compra, opiniones, cantidad, estado);
     
     if (collection3){
-        res.status(200).json({
-        "message" : 'Sale update',
-        collection3
-    });
+        res.status(200).redirect('/estado')
 
    }else{
         res.status(404).send("Sale not update");
@@ -103,15 +142,12 @@ router.patch('/', async (req, res) => {
 // DELETE
 
 // deleteOne()
-router.delete('/:id', async (req, res) => { 
+router.get('/eliminar/:id', async (req, res) => { 
     const id = req.params.id;
     const collection3 = erase.deleteOne({id});
    
     if (collection3){
-    res.status(200).json({
-        "message" : 'Deleted sale',
-        collection3
-    });
+    res.status(200).redirect('/estado')
 
    }else{
     res.status(404).send("Sale not deleted");
@@ -134,6 +170,5 @@ router.delete('/', async (req, res) => {
         res.status(404).send("Sales not deleted");
     }
 })
-
 
 module.exports = router;

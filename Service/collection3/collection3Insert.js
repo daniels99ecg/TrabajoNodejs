@@ -1,5 +1,5 @@
 const {MongoClient, ObjectId} = require('mongodb');
-const uri = "mongodb+srv://andres:admin353@cluster0.etevk7a.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://andres:admin353@cluster0.etevk7a.mongodb.net/?retryWrites=true&w=majority"
 
 
 class listingInsert3{
@@ -24,6 +24,31 @@ async insertMany(body){
         await client.close();
     }
 }
-}
+
+async regist(cantidad, compra, opiniones, estado){
+    const client = new MongoClient(uri);
+    
+    try {
+        await client.connect();
+        const collection3 = await client.db('sample_sales').collection('collection3').insertMany([
+            {
+                "cantidad": cantidad,
+                "metodocompra": compra,
+                "opiniones": opiniones,
+                "estado": estado
+        }
+    
+        ])    
+        return collection3;
+            
+        }catch (e) {
+            console.error(e);
+        }finally{
+          
+        await client.close();
+        }
+    }
+        
+}   
 
 module.exports = listingInsert3;
