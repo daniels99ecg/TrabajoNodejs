@@ -1,22 +1,6 @@
- {{>head title='Insumos'}}
+{{>head title='Insumos'}}
 {{>nav}}
-
-
-<br>
- <div style="width: 30%; margin-left:15%;"> 
-    <a href="/insumos/insertar"> <button type="button" class="btn btn-primary">Registrar</button></a>
- 
-    <form action="/insumos/buscar/{{title._id}}" method="post" >
-       <br>
-       
-        <input type="text" name="id" class="form-control" placeholder="Buscar...">
-       
-    <button class="btn btn-primary" >Buscar</button>
-
-    </form>
-    </div>
-
-     <div style="width: 70%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
+<div style="width: 70%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
         <table class="table table-striped">
              <tr>
                 <th scope="col">Id</th>
@@ -37,6 +21,9 @@
                         <td>{{cantidad}}</td>
                         <td>{{proveedor}}</td>
                         <td>{{estado}}</td>
+                        {{#each Costo_insumo}}
+                        <td>{{Costo_insumo}}</td>
+                        {{/each}}
                        
                         <td>
                         <a href="/insumos/update/{{_id}}"><button type="button" class="btn btn-primary">Actualizar</button></a>
@@ -46,12 +33,12 @@
                         </td>
                     </tr>
                      
-                {{/each}}
-             
+               
+             {{/each}}
                
             
             </tbody>
         </table>
         </div>
 
-        {{>footer}}
+{{>footer}}

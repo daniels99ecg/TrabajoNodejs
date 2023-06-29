@@ -3,8 +3,10 @@ const restComment=require('./comment.js');
 const restSession=require('./session.js');
 const restUsuario=require('./usuarios-i.js');
 const resRol=require('./rol.js');
+
 const resFicha=require('./RouterFichaTecnica.js');
 const resInsumo=require('./Routerinsumos.js');
+const respuestaInsumosArray=require('./RouterinsumosArray')
 
 
 const routerlistingSales = require('./routesListingSales');
@@ -26,7 +28,8 @@ function responApi(app){
     app.use('/usuarios', restUsuario);
     app.use('/rol', resRol);
     app.use('/ficha', resFicha);
-    app.use('/insumo', resInsumo);
+    app.use('/insumos', resInsumo);
+    app.use('/insumosarray', respuestaInsumosArray);
 
 
     app.use('/ventas', routerlistingSales);//La app que creamos con appexpress va a asociar "movies" con el controlador routesMovies

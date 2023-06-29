@@ -7,12 +7,19 @@ class insumosActualizar{
 
     constructor(){}
 
-    async UpdatetOne(id,insu_nombre){
+    async UpdatetOne(id,nombre,precio,cantidad,proveedor,estado){
 
         const client=new MongoClient(uri);
         try {
             await client.connect();
-            const result = await client.db('Publigrafit').collection('insumos').updateOne({_id:new ObjectId(id)},{$set:{nombre:insu_nombre}});
+            const result = await client.db('Publigrafit').collection('insumos').updateOne({_id:new ObjectId(id)},{$set:{
+
+                "nombre":nombre,
+                "precio":precio,
+                "cantidad":cantidad,
+                "proveedor":proveedor,
+                "estado":estado
+            }});
             return result
         } catch (error) {
             console.log(error)

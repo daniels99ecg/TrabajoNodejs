@@ -22,6 +22,28 @@ class fichaTecnicaInsertar{
         
         }
     }
+    async insertarDatos(cantidadInsumo,costoInsumo,imagen,costoP,detalle,insumos){
+        const client=new MongoClient(uri);
+        try {
+            await client.connect();
+            const result = await client.db('Publigrafit').collection('ficha_tecnica').insertMany([
+                {
+                "cantidad_insumo":cantidadInsumo,
+                "Costo_insumo":costoInsumo,
+                "imagen_producto_final":imagen,
+                "costo_final_producto":costoP,
+                "detalle":detalle,
+                "id_insumos":insumos
+                }
+
+            ]);
+            return result
+        } catch (error) {
+            console.log(error)
+        }finally {
+            await client.close();
+        }
+    }
 
 }
 

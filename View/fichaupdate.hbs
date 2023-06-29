@@ -1,0 +1,45 @@
+ {{>head title='ficha_tecnica'}}
+{{>nav}}
+              <div style="width: 30%; margin:auto;  padding:1%;">
+                <h1>Actualizar Ficha Tecnica</h1>
+                <form action="in/{{title._id}}" method="POST">
+                <div class="mb-3">
+                    
+            
+                </div>
+                <div class="mb-3">
+                  <label for="cantidadInsumo" class="form-label">Cantidad Insumo</label>
+                  <input type="text" class="form-control" id="cantidadInsumo" name="cantidadInsumo" value="{{title.cantidad_insumos}}">
+                </div>
+
+                 <div class="mb-3">
+                  <label for="costoInsumo" class="form-label">Costo Insumo</label>
+                  <input type="text" class="form-control" id="costoInsumo" name="costoInsumo" value="{{title.Costo_insumo}}" >
+                </div>
+
+                <div class="mb-3">
+                  <label for="imagen" class="form-label">Imagen Producto Final</label>
+                  <input type="text" class="form-control" id="imagen" name="imagen" value="{{title.imagen_producto_final}}">
+                </div>
+
+                  <div class="mb-3">
+                  <label for="costoP" class="form-label">Costo Final Producto</label>
+                  <input type="text" class="form-control" id="costoP" name="costoP" value="{{title.costo_final_producto}}">
+                </div>
+                
+                  <div class="mb-3">
+                  <label for="detalle" class="form-label">Detalle</label>
+                  <input type="text" class="form-control" id="detalle" name="detalle" value="{{title.detalle}}" >
+                </div>
+
+                <div class="mb-3">
+                  <label for="insumos" class="form-label">Id Insumos</label>
+                  <input type="text" class="form-control" id="insumos" name="insumos" value="{{title.id_insumos}}">
+                </div>
+
+                <button class="btn btn-primary">Actualizar</button>
+
+                </form>
+                </div>
+
+        {{>footer}}

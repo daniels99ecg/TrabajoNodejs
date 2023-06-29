@@ -1,0 +1,43 @@
+{{>head title='ficha_tecnica'}}
+{{>nav}}
+<div style="width: 150%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
+        <table class="table table-striped">
+             <tr>
+               <th scope="col">Id</th>
+                <th>Cantidad Insumo</th>
+                <th>Costo insumo</th>
+                <th>Imagen Producto</th>
+                <th>Costo Final</th>
+                <th>Detalle</th>
+                <th>Id Insumos</th>
+            
+            </tr>
+            <tbody>
+           
+               
+                    <tr>
+                         <td scope="row">{{title._id}}</td>
+                        <td>{{title.cantidad_insumos}}</td>
+                        <td>{{title.Costo_insumo}}</td>
+                        <td>{{title.imagen_producto_final}}</td>
+                        <td>{{title.costo_final_producto}}</td>
+                        <td>{{title.detalle}}</td>
+                        <td>{{title.id_insumos}}</td>
+                       
+                        <td>
+                        <a href="/ficha_tecnica/update/{{title._id}}"><button type="button" class="btn btn-primary">Actualizar</button></a>
+                        </td>
+                        <td>
+                           <a href="/ficha_tecnica/eliminarf/{{title._id}}"> <button type="button" class="btn btn-danger">Eliminar</button></a>
+                        </td>
+                    </tr>
+                     
+               
+             
+               
+            
+            </tbody>
+        </table>
+        </div>
+
+        {{>footer}}

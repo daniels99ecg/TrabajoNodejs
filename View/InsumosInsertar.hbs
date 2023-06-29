@@ -1,0 +1,41 @@
+ {{>head title='Insumos'}}
+ {{>nav}}
+
+              <div style="width: 30%; margin:auto;  padding:1%;">
+                <h1>Registrar Insumos</h1>
+                <form action="insumosinsertar/nuevo" method="POST">
+                <div class="mb-3">
+                    
+            
+                </div>
+                <div class="mb-3">
+                  <label for="proveedor" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre">
+                </div>
+
+                 <div class="mb-3">
+                  <label for="cantidad" class="form-label">Precio</label>
+                  <input type="text" class="form-control" id="precio" name="precio" >
+                </div>
+
+                <div class="mb-3">
+                  <label for="total" class="form-label">Cantidad</label>
+                  <input type="text" class="form-control" id="cantidad" name="cantidad" >
+                </div>
+
+                  <div class="mb-3">
+                  <label for="total" class="form-label">Proveedor</label>
+                  <input type="text" class="form-control" id="proveedor" name="proveedor" >
+                </div>
+                
+                  <div class="mb-3">
+                  <label for="total" class="form-label">Estado</label>
+                  <input type="text" class="form-control" id="estado" name="estado" >
+                </div>
+
+                <button class="btn btn-primary">Registrar</button>
+
+                </form>
+                </div>
+
+        {{>footer}}

@@ -1,0 +1,41 @@
+{{>head title='Insumos'}}
+{{>nav}}
+<div style="width: 70%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
+        <table class="table table-striped">
+             <tr>
+                <th scope="col">Id</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Proveedor</th>
+                <th>Estado</th>
+            
+            </tr>
+            <tbody>
+           
+               
+                    <tr>
+                        <td scope="row">{{title._id}}</td>
+                        <td>{{title.nombre}}</td>
+                        <td>{{title.precio}}</td>
+                        <td>{{title.cantidad}}</td>
+                        <td>{{title.proveedor}}</td>
+                        <td>{{title.estado}}</td>
+                       
+                        <td>
+                        <a href="/insumos/update/{{title._id}}"><button type="button" class="btn btn-primary">Actualizar</button></a>
+                        </td>
+                        <td>
+                           <a href="/insumos/eliminar/{{title._id}}"> <button type="button" class="btn btn-danger">Eliminar</button></a>
+                        </td>
+                    </tr>
+                     
+               
+             
+               
+            
+            </tbody>
+        </table>
+        </div>
+
+        {{>footer}}

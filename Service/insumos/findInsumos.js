@@ -38,7 +38,52 @@ class insumosFind{
     
     }
     }
+    
+    async findlimit(){
+        const client=new MongoClient(uri);
+        
+    
+    try {
+        await client.connect();
+        const result = await client.db('Publigrafit').collection('insumos').find({}).skip(10).limit(10).toArray();
+        return result
+    } catch (error) {
+        console.log(error)
+    }finally {
+    
     }
+    }
+
+    async findlookup(){
+        const client=new MongoClient(uri);
+        
+    
+    try {
+        await client.connect();
+        const result = await client.db('Publigrafit').collection('insumos').aggregate([{
+            $lookup: {
+                from:"ficha_tecnica",
+                localField:"'_id'",
+                foreignField:"'_id'",
+                as:"Costo_insumo"
+
+
+            }
+            },{
+                $limit:5
+            },{
+                $sort:{Costo_insumo:1}
+            }
+
+        ]).toArray();
+        return result
+    } catch (error) {
+        console.log(error)
+    }finally {
+    
+    }
+    }
+}
 
 
 module.exports=insumosFind;

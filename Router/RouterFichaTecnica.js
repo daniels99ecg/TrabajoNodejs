@@ -20,19 +20,43 @@ const listar2=new fichaTecnicaInsertar()
 const listar3=new fichaTecnicaActualizar()
 const listar4=new fichaTecnicaEliminar()
 
+Router.get('/insertar', async (req, res) => {
+    res.status(200).render('../View/fichaInsertar');
+})
+
+//findlimit limitar 
+Router.get('/fichalimit', async (req, res) => { //funcion asincronica
+    const result=await listar.findlimit()
+    if(result){
+        res.status(200).render('../View/ficha',{title:result});
+    }else{
+        res.status(404).send('No hay insumos');
+    }
+})
 
 //find para listar todos los documentos de la coleccion
 Router.get('/', async (req, res) => { //funcion asincronica
     const result=await listar.find()
     if(result){
-        res.status(200).render('../View/ficha', {title:result})
-
+        res.status(200).render('../View/ficha',{title:result});
         
     }else{
         res.status(404).send('No hay fichas tecnicas.');
     }
 
 
+})
+//buscar
+Router.post('/buscar/', async (req, res) => { 
+    const id = req.body.id;
+    const result=await listar.finOne({id})
+    
+    if(result){
+    res.status(200).render('../View/fichaFindOne', {title:result})
+    
+    }else{
+        res.status(404).send("Collection not found");
+    }
 })
    
 //findOne Listar un documento de la coleccion
@@ -61,6 +85,34 @@ Router.get('/', async (req, res) => { //funcion asincronica
                 res.status(404).send('No se registro las fichas tecnicas.');
             }
         })
+
+    //InsertMany insumos...
+    Router.post('/fichainsertar/nuevo', async (req, res) => {
+
+        const cantidadInsumo=parseInt(req.body.cantidadInsumo);
+        const costoInsumo=parseInt(req.body.costoInsumo);
+        const imagen=req.body.imagen;
+        const costoP=req.body.costoP;
+        const detalle=req.body.detalle;
+        const insumos=parseInt(req.body.insumos);
+
+        const result=await listar2.insertarDatos(cantidadInsumo,costoInsumo,imagen,costoP,detalle,insumos);
+        if(result){
+            res.status(200).redirect('/ficha_tecnica');
+        }else{
+            res.status(404).send("No se Registro la Ficha Tecnica.");
+        }
+    });
+    //findOne Para actulizar
+    Router.get('/update/:id', async (req, res) => { //funcion asincronica
+        const id=req.params.id; //que va hacer un req con el parametro id
+        const result=await listar.finOne({id})
+        if(result){
+           res.render('../View/fichaupdate',{title:result})
+        }else{
+            res.status(404).send('No hay ficha tecnica');
+        }
+    })
     
     
     //UpdateOne para actualizar un campo o varios de un insumo..
@@ -135,6 +187,38 @@ Router.get('/', async (req, res) => { //funcion asincronica
        
             
     })
+
+    //deleOne para eliminar un documento de la coleccion
+    Router.get('/eliminarf/:id', async (req, res) => { //funcion asincronica
+        const id=req.params.id; //que va hacer un req con el parametro id
+        const result=await listar4.deleteOne(id)
+        if(result){
+                res.status(200).redirect('/ficha_tecnica')
+            }else{
+                    res.status(404).send('No se elimino el insumo');
+            }
+       
+            
+    })
+
+     //Update
+     Router.post('/update/in/:id', async (req, res) => {
+        const id=req.params.id; 
+
+        const cantidadInsumo=parseInt(req.body.cantidadInsumo);
+        const costoInsumo=parseInt(req.body.costoInsumo);
+        const imagen=req.body.imagen;
+        const costoP=req.body.costoP;
+        const detalle=req.body.detalle;
+        const insumos=parseInt(req.body.insumos);
+
+        const result=await listar3.UpdatetOne(id,cantidadInsumo,costoInsumo,imagen,costoP,detalle,insumos);
+        if(result){
+            res.status(200).redirect('/ficha_tecnica');
+        }else{
+            res.status(404).send("No se actualizo la pelicula");
+        }
+    });
 
 
 module.exports= Router;

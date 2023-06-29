@@ -2,7 +2,7 @@ const {MongoClient, ObjectId} = require('mongodb'); //Para poder trabajar con Id
 const uri='mongodb+srv://ANDRES:admin@cluster0.zaeaoqe.mongodb.net/?retryWrites=true&w=majority';
 const bodyParser =require('body-parser')
 
-class fichaTecnicaFind{
+class insumosArrayFind{
 
 
     constructor(){}
@@ -15,7 +15,7 @@ class fichaTecnicaFind{
     
         try {
             await client.connect();
-            const result = await client.db('Publigrafit').collection('ficha_tecnica').find({}).toArray();
+            const result = await client.db('Publigrafit').collection('insumosarray').find({}).toArray();
             return result
         } catch (error) {
             console.log(error)
@@ -30,7 +30,7 @@ class fichaTecnicaFind{
     
     try {
         await client.connect();
-        const result = await client.db('Publigrafit').collection('ficha_tecnica').findOne({_id:new ObjectId(id)});
+        const result = await client.db('Publigrafit').collection('insumosarray').findOne({_id:new ObjectId(id)});
         return result
     } catch (error) {
         console.log(error)
@@ -38,13 +38,15 @@ class fichaTecnicaFind{
     
     }
     }
-    async findlimit(){
+    async findunwind(id){
         const client=new MongoClient(uri);
         
     
     try {
         await client.connect();
-        const result = await client.db('Publigrafit').collection('ficha_tecnica').find({}).skip(10).limit(20).toArray();
+        const result = await client.db('Publigrafit').collection('insumosarray').aggregate([{
+            $unwind:'$sizes'
+        }]).toArray();
         return result
     } catch (error) {
         console.log(error)
@@ -55,4 +57,4 @@ class fichaTecnicaFind{
     }
 
 
-module.exports=fichaTecnicaFind;
+module.exports=insumosArrayFind;

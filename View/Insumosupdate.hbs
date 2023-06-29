@@ -1,0 +1,37 @@
+ {{>head title='insumos'}}
+{{>nav}}
+
+              <div style="width: 30%; margin:auto;  padding:1%;">
+                <h1>Actualizar insumos</h1>
+                <form action="in/{{title._id}}" method="POST">
+               
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" value="{{title.nombre}}">
+                </div>
+
+                 <div class="mb-3">
+                  <label for="apellido" class="form-label">Precio</label>
+                  <input type="text" class="form-control" id="precio" name="precio" value="{{title.precio}}">
+                </div>
+
+                <div class="mb-3">
+                  <label for="edad" class="form-label">Cantidad</label>
+                  <input type="text" class="form-control" id="cantidad" name="cantidad" value="{{title.cantidad}}">
+                </div>
+
+                    <div class="mb-3">
+                  <label for="direccion" class="form-label">Proveedor</label>
+                  <input type="text" class="form-control" id="proveedor" name="proveedor" value="{{title.proveedor}}">
+                </div>
+
+                 <div class="mb-3">
+                  <label for="estado" class="form-label">Estado</label>
+                  <input type="text" class="form-control" id="estado" name="estado" value="{{title.estado}}">
+                </div>
+                <button class="btn btn-primary">Actualizar</button>
+
+                </form>
+                </div>
+
+        {{>footer}}
