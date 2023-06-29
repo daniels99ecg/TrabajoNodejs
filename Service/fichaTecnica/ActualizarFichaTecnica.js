@@ -15,7 +15,7 @@ class fichaTecnicaActualizar{
             await client.connect();
             const result = await client.db('Publigrafit').collection('ficha_tecnica').updateOne({_id:new ObjectId(id)},{$set:
                 {
-                cantidad_insumo:cantidadInsumo,
+                cantidad_insumos:cantidadInsumo,
                 Costo_insumo:costoInsumo,
                 imagen_producto_final:imagen,
                 costo_final_producto:costoP,

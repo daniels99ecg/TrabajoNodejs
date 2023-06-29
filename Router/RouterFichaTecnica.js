@@ -98,7 +98,7 @@ Router.post('/buscar/', async (req, res) => {
 
         const result=await listar2.insertarDatos(cantidadInsumo,costoInsumo,imagen,costoP,detalle,insumos);
         if(result){
-            res.status(200).redirect('/ficha_tecnica');
+            res.status(200).redirect('/ficha');
         }else{
             res.status(404).send("No se Registro la Ficha Tecnica.");
         }
@@ -193,7 +193,7 @@ Router.post('/buscar/', async (req, res) => {
         const id=req.params.id; //que va hacer un req con el parametro id
         const result=await listar4.deleteOne(id)
         if(result){
-                res.status(200).redirect('/ficha_tecnica')
+                res.status(200).redirect('/ficha')
             }else{
                     res.status(404).send('No se elimino el insumo');
             }
@@ -214,7 +214,7 @@ Router.post('/buscar/', async (req, res) => {
 
         const result=await listar3.UpdatetOne(id,cantidadInsumo,costoInsumo,imagen,costoP,detalle,insumos);
         if(result){
-            res.status(200).redirect('/ficha_tecnica');
+            res.status(200).redirect('/ficha');
         }else{
             res.status(404).send("No se actualizo la pelicula");
         }

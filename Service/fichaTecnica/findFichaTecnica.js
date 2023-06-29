@@ -44,7 +44,7 @@ class fichaTecnicaFind{
     
     try {
         await client.connect();
-        const result = await client.db('Publigrafit').collection('ficha_tecnica').find({}).skip(10).limit(20).toArray();
+        const result = await client.db('Publigrafit').collection('ficha_tecnica').find({}).skip(50).limit(5).toArray();
         return result
     } catch (error) {
         console.log(error)
