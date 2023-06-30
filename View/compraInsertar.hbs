@@ -1,0 +1,32 @@
+ {{>head title='Registrar Compras'}}
+{{>nav}}
+              <div style="width: 30%; margin:auto;  padding:1%;">
+                <h1>Registrar Compras</h1>
+                <form action="/compras/create/in" method="POST">
+                <div class="mb-3">
+                    
+            
+                </div>
+                <div class="mb-3">
+                  <label for="proveedor" class="form-label">Proveedor</label>
+                  <input type="text" class="form-control" id="proveedor" name="proveedor">
+                </div>
+
+                 <div class="mb-3">
+                  <label for="cantidad" class="form-label">Cantidad</label>
+                  <input type="number" class="form-control" id="cantidad" name="cantidad" >
+                </div>
+
+                
+
+                    <div class="mb-3">
+                  <label for="total" class="form-label">Total</label>
+                  <input type="number" class="form-control" id="total" name="total" >
+                </div>
+
+                <button class="btn btn-primary">Actualizar</button>
+
+                </form>
+                </div>
+
+        {{>footer}}

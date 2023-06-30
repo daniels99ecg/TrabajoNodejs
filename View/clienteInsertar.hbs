@@ -1,0 +1,39 @@
+ {{>head title='Actualizar Clientes'}}
+{{>nav}}
+              <div style="width: 30%; margin:auto;  padding:1%;">
+                <h1>Registrar cliente</h1>
+                <form action="/clientes/create/in" method="POST">
+                <div class="mb-3"> 
+                </div>
+
+                 <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" >
+                </div>
+
+                <div class="mb-3">
+                  <label for="apellido" class="form-label">Apellido</label>
+                  <input type="text" class="form-control" id="apellido" name="apellido" >
+                </div>
+
+                <div class="mb-3">
+                  <label for="telefono" class="form-label">Telefono</label>
+                  <input type="int" class="form-control" id="telefono" name="telefono" >
+                </div>
+
+                <div class="mb-3">
+                  <label for="direccion" class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="direccion" name="direccion" >
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" >
+                </div>
+
+                <button class="btn btn-primary">Registrar</button>
+
+                </form>
+                </div>
+
+        {{>footer}}

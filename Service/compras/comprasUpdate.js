@@ -7,14 +7,20 @@ class comprasUpdate {
 
     constructor(){}
 
-async updateOne (id, body){
+async updateOne (id, proveedor, cantidad, fecha, total){
 
 
             const client = new MongoClient(uri)
 
             try {
                 await client.connect()
-                const result = await client.db('Publigrafit2').collection('Compras').updateOne({_id:new ObjectId(id)},{$set:{body}})
+                const result = await client.db('Publigrafit2').collection('Compras').updateOne({_id:new ObjectId(id)},{$set:{
+                    'supplier':proveedor,
+                    'amount':cantidad,
+                    'date':fecha,
+                    'total':total,
+
+                }})
                 return result
             
             } catch (error) {

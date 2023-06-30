@@ -23,38 +23,63 @@ Router.get('/', async(req, res)=>{ //Funcion asincronica
     const result = await listar.find()
     
     if(result){
-        res.status(200).send(result)
+        res.status(200).render('../View/comprasListar', {title: result})
         }else{
             res.status(404).send('No hay compras')
         }
     })
     
+    Router.get('/agregacion', async(req, res)=>{ //Funcion asincronica
     
-    
-    Router.get('/:id', async(req, res)=>{ //Funcion asincronica - mandar id
-        const id = req.params.id
-
-        const result = await listar.findOne({id})
-
+        const result = await listar.aggregate()
+        
         if(result){
-            res.status(200).send(result)
+            res.status(200).render('../View/compraLookup', {title: result})
             }else{
                 res.status(404).send('No hay compras')
             }
         })
     
+
+
+        Router.get('/unwind', async(req, res)=>{ //Funcion asincronica
     
-    
-        Router.post('/', async(req, res)=>{ //Funcion asincronica - mandar id
-            const body = req.body;
-            const result = await insertar.insertMany(body)
+            const result = await listar.unwind()
+            
+            
             if(result){
-                res.status(200).json({
-        
-        
-                    message:'Se creo la compra',
-                    result
-                })
+                res.status(200).send(result)
+                }else{
+                    res.status(404).send('No hay compras')
+                }
+            })
+    
+    Router.post('/buscar/', async(req, res)=>{ //Funcion asincronica - mandar id
+        const id = req.body.id
+        const result = await listar.findOne({id})
+
+        if(result){
+            res.status(200).render('../View/compraFindOne', {title: result})
+            }else{
+                res.status(404).send('No hay compras')
+            }
+        })
+    
+        Router.get('/create', async(req, res)=>{
+
+            res.status(200).render('../View/compraInsertar')
+            
+        })
+    
+        Router.post('/create/in', async(req, res)=>{ //Funcion asincronica - mandar id
+            const proveedor = req.body.proveedor;
+            const cantidad =parseInt(req.body.cantidad);
+            const fecha = new Date();
+            const total = parseInt(req.body.total);
+            const result = await insertar.insertMany(proveedor, cantidad, fecha, total)
+            
+            if(result){
+                res.status(200).redirect('/compras')
                 }else{
                     res.status(404).send('No se registro la compra')
                 }
@@ -79,7 +104,34 @@ Router.get('/', async(req, res)=>{ //Funcion asincronica
                 
                 })
     
-    
+                Router.get('/update/:id', async(req, res)=>{ //Funcion asincronica - mandar id
+                    const id = req.params.id
+            
+                    const result = await listar.findOne({id})
+            
+                    if(result){
+                        res.status(200).render('../View/compraActualizar', {title: result})
+                        }else{
+                            res.status(404).send('No hay compras')
+                        }
+                    })
+
+                    Router.post('/update/in/:id', async(req, res)=>{ 
+                        const id = req.params.id;
+                        const proveedor = req.body.proveedor;
+                        const cantidad =parseInt(req.body.cantidad);
+                        const fecha = new Date();
+                        const total = parseInt(req.body.total);
+                        const result = actualizar.updateOne(id, proveedor, cantidad, fecha, total)
+
+                        if(result){
+                            res.status(200).redirect('/compras')
+                            }else{
+                                res.status(404).send('No se registro la compra')
+                            }
+                        })
+                
+                
     
                 Router.put('/', async(req, res)=>{ //Funcion asincronica - mandar id
                     
@@ -121,18 +173,13 @@ Router.get('/', async(req, res)=>{ //Funcion asincronica
     
     
     
-                    Router.delete('/:id', async(req, res)=>{ //Funcion asincronica - mandar id
+                    Router.get('/eliminar/:id', async(req, res)=>{ //Funcion asincronica - mandar id
                         const client = new MongoClient(uri)
                         const id = req.params.id
     
                         const result = await eliminar.deleteOne(id)
                         if(result){
-                        res.status(200).json({
-                
-                
-                            message:'Se elimino la compra',
-                            result
-                        })
+                        res.status(200).redirect('/compras')
                         }else{
                             res.status(404).send('No se elimino la compra')
                         }

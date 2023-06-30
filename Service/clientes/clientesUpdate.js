@@ -7,14 +7,22 @@ class ClientesUpdate {
 
     constructor(){}
 
-async updateOne (id, body){
+async updateOne (id, nombre, apellido, telefono, direccion, email){
 
 
             const client = new MongoClient(uri)
 
             try {
                 await client.connect()
-                const result = await client.db('Publigrafit2').collection('Clientes').updateOne({_id:new ObjectId(id)},{$set:{body}})
+                const result = await client.db('Publigrafit2').collection('Clientes').updateOne({_id:new ObjectId(id)},{$set:{
+
+
+                    'name':nombre, 
+                    'lastname':apellido,
+                    'telephone':telefono,
+                    'address':direccion,
+                    'email':email
+                }})
                 return result
             
             } catch (error) {

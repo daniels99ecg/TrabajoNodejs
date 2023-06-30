@@ -7,7 +7,7 @@ class ClientesDelete {
 
     constructor(){}
 
-async deleteOne (id, body){
+async deleteOne (id){
 
 
             const client = new MongoClient(uri)

@@ -7,14 +7,22 @@ class ClientesInsertar {
 
     constructor(){}
 
-async insertMany (body){
+async insertMany (nombre, apellido, telefono, direccion, email){
 
 
             const client = new MongoClient(uri)
 
             try {
                 await client.connect()
-                const result = await client.db('Publigrafit2').collection('Clientes').insertMany([body])
+                const result = await client.db('Publigrafit2').collection('Clientes').insertMany([{
+
+                    'name': nombre,
+                    'lastname': apellido,
+                    'telephone':telefono,
+                    'address':direccion,
+                    'email':email
+
+                }])
                 return result
             
             } catch (error) {

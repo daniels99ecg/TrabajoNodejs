@@ -7,14 +7,20 @@ class comprasInsertar {
 
     constructor(){}
 
-async insertMany (body){
+async insertMany (proveedor, cantidad, fecha, total){
 
 
             const client = new MongoClient(uri)
 
             try {
                 await client.connect()
-                const result = await client.db('Publigrafit2').collection('Compras').insertMany([body])
+                const result = await client.db('Publigrafit2').collection('Compras').insertMany([{
+
+                    'supplier': proveedor,
+                    'amount': cantidad,
+                    'date': new Date(),
+                    'total' : total,
+                }])
                 return result
             
             } catch (error) {

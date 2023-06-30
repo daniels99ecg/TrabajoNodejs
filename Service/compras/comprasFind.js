@@ -42,6 +42,67 @@ class comprasFind{
         
         }
     }
+
+    async aggregate (){
+
+        const client = new MongoClient(uri)
+    
+        try {
+            await client.connect()
+            const result = await client.db('Publigrafit2').collection('Compras').aggregate([
+
+                {
+
+
+                    $lookup:{
+                        from:"Clientes",
+                        localField:"'_id'",
+                        foreignField:"'_id'",
+                        as:"comentarios"
+                    }
+                },{
+                    $limit:5
+                },{
+                    $sort:{supplier:1}
+                }
+
+            ]).toArray()
+            return result
+        
+        } catch (error) {
+            console.log(error)
+        }finally{
+        
+        }
+
+    }
+    async unwind (){
+
+        const client = new MongoClient(uri)
+    
+        try {
+            await client.connect()
+            const result = await client.db('Publigrafit2').collection('ClienteArray').aggregate([
+
+                {
+                    $unwind:"$size"
+                }
+
+            ]).toArray()
+            return result
+        
+        } catch (error) {
+            console.log(error)
+        }finally{
+        
+        }
+
+    }
+
+
+
+
+
 }
 
 

@@ -1,0 +1,56 @@
+ {{>head title='compras'}}
+{{>nav}}
+
+<br>
+ <div style="width: 30%; margin-left:15%;">
+    <a href="/compras/create"> <button type="button" class="btn btn-primary">Registrar</button></a>
+ 
+    <form action="/compras/buscar/{{title._id}}" method="post" >
+       <br>
+       
+        <input type="text" name="id" class="form-control" placeholder="Buscar...">
+       
+    <button class="btn btn-primary" >Buscar</button>
+
+    </form>
+    </div>
+
+     <div style="width: 70%; height:600px; margin-left:15%; overflow-y:scroll; overflow-x:hidden;">
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Id</th>
+                <th>Proveedor</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Accion</th>
+            </tr>
+            <tbody>
+           
+             
+                {{#each title}}
+                
+                    <tr>
+                        <td scope="row">{{_id}}</td>
+                        <td>{{supplier}}</td>
+                        <td>{{amount}}</td>
+                        <td>{{date}}</td>
+                        <td>{{total}}</td>
+
+                        <td>
+                            <a href="/compras/update/{{_id}}"><button type="button" class="btn btn-primary">Actualizar</button></a>
+                        </td>
+                        <td>
+                           <a href="/compras/eliminar/{{_id}}"> <button type="button" class="btn btn-danger">Eliminar</button></a>
+                        </td>
+                    </tr>
+                     
+                {{/each}}
+             
+               
+            
+            </tbody>
+        </table>
+        </div>
+
+        {{>footer}}
